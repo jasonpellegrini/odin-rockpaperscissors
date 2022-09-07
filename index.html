@@ -5,12 +5,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="app.js"></script>
+    <script type="text/javascript" src="app.js" defer></script> 
 </head>
 <body>
-    <script>
-     main();
-    </script>
-    
+
+    <button id="rock" type="button">Rock</button>
+    <button id="paper" type="button">Paper</button>
+    <button id="scissors" type="button">Scissors</button>
+
+    <div>
+        <h1>Results</h1>
+        <p id="results"></p>
+    </div>
+    <div>
+        <h2>Player: </h2>
+        <p id="playerScore">0</p>
+        <h2>Computer: </h2>
+        <p id = "cpuScore">0</p>
+        <h1 id="finalScore"></h1>
+    </div>
+
 </body>
 </html>

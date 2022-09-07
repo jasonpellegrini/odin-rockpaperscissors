@@ -1,0 +1,10 @@
+ repeat this 5 times{
+    1. get computer choice
+    2. prompt user for their choice
+    3. compare results
+    4. display who won that round
+    5. keep track of points
+ }  
+    6. compare who has more points
+    7. display win lose or draw
+    

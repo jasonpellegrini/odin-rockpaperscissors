@@ -21,7 +21,7 @@ function getComputerChoice() {
     }
 }
 
-function getPlayerChoice() {
+/*function getPlayerChoice() {
     let playerChoice = "hi";
     let bool = false;
     do {
@@ -38,47 +38,84 @@ function getPlayerChoice() {
     } while (bool === false);
     console.log("Player picked: " + playerChoice);
     return playerChoice; 
-}
+}*/
 
 function playRound(playerSelection, computerSelection) { 
 
     if (playerSelection === computerSelection) {
-        console.log("Draw!");
+
+        document.getElementById("results").innerHTML = "It's a draw!";
         return 0;
     } else if ((playerSelection === "rock" && computerSelection === "scissors") || (playerSelection === "paper" && computerSelection === "rock") ||
                (playerSelection === "scissors" && computerSelection === "paper")) {
-        console.log("Player wins this round!");
+                document.getElementById("results").innerHTML = "Player wins!";
         return 1;
     } else {
-        console.log("Computer wins this round! (" + computerSelection + ")");
+        document.getElementById("results").innerHTML = "Sorry, you lose!";
         return 2;
     }
 }
 
-function game() {
-     let result = playRound(userAnswer, compAnswer);
-     if (result == 0) {
-         console.log("Player: " + playerPoints + " Computer: " + computerPoints);
-     } else if (result == 1) {
-         playerPoints++;
-         console.log("Player: " + playerPoints + " Computer: " + computerPoints);
-     } else {
-        computerPoints++;
-        console.log("Player: " + playerPoints + " Computer: " + computerPoints);
+function game(x, y) {
+    y = getComputerChoice();
+    if (playerPoints < 5 && computerPoints < 5){
+        let result = playRound(x, y);
+        if (result == 0) {
+            document.getElementById("playerScore").innerHTML = playerPoints;
+            return;
+        } else if (result == 1) {
+            playerPoints++;
+            document.getElementById("playerScore").innerHTML = playerPoints;
+            win();
+            return;
+        } else {
+            computerPoints++;
+            document.getElementById("cpuScore").innerHTML = computerPoints;
+        win();
+        return;
+            }
+    } else {
+        return;
+    } 
+}
+
+function win(){
+    if (playerPoints === 5 || computerPoints === 5){
+
+        if (playerPoints > computerPoints) {
+            document.getElementById("finalScore").innerHTML = "Player wins!";
+            return;
+        } else (playerPoints < computerPoints) 
+            document.getElementById("finalScore").innerHTML = "Sorry, you lose!";
+            return;
         }
 }
 
 function main() {
-    for (let i = 0; i < 5; i++) {
+
         compAnswer = getComputerChoice();
-        userAnswer = getPlayerChoice();
-        game();
+
+        const rock = document.querySelector('#rock');
+        rock.addEventListener('click', function(){game("rock", compAnswer); });
+
+        const paper = document.querySelector('#paper');
+        paper.addEventListener('click', function(){game("paper", compAnswer); });
+
+        const scissors = document.querySelector('#scissors');
+        scissors.addEventListener('click', function(){game("scissors", compAnswer); });
+
+    if (playerPoints === 5 || computerPoints === 5){
+
+        if (playerPoints > computerPoints) {
+            document.getElementById("finalScore").innerHTML = "Player wins!";
+        } else if (playerPoints < computerPoints) {
+            document.getElementById("finalScore").innerHTML = "Sorry, you lose!";
+        } else {
+            document.getElementById("finalScore").innerHTML = "It's a draw!";
+        }
+    
     }
-    if (playerPoints > computerPoints) {
-        console.log("Congratulations! You win.");
-    } else if (playerPoints < computerPoints) {
-        console.log("Sorry, you lose!");
-    } else {
-        console.log("It's a draw!");
-    }
+    
 }
+
+main();
